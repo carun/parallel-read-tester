@@ -5,8 +5,6 @@ private struct Data
     ubyte[3000] feature;
 }
 
-private enum ThreadCount = 8;
-
 import std.stdio;
 import std.container.array : Array;
 
@@ -40,18 +38,19 @@ private void read(int tid)
 void main(string[] args)
 {
     stderr.writeln("=== Starting D version ===");
-    if (args.length != 3)
+    if (args.length != 4)
     {
-        writefln("Usage: %s <array-size> <read-iter-count>", args[0]);
+        writefln("Usage: %s <thread-count> <array-size> <read-iter-count>", args[0]);
         return;
     }
     import std.datetime.stopwatch, std.conv : to;
 
-    ReadIterCount = args[2].to!int;
+    int threadCount = args[1].to!int;
+    ReadIterCount = args[3].to!int;
 
     auto sw = StopWatch(AutoStart.yes);
 
-    foreach (i; 0 .. args[1].to!ulong)
+    foreach (i; 0 .. args[2].to!ulong)
     {
         Data data;
         data.id = i;
@@ -62,7 +61,7 @@ void main(string[] args)
             " items. Gonna search in parallel...");
     sw.start;
 
-    foreach (i; 0 .. ThreadCount)
+    foreach (i; 0 .. threadCount)
     {
         import std.concurrency : spawn;
 
