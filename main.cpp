@@ -46,7 +46,7 @@ int main(int argc, char* args[])
     std::cerr << "=== Starting CPP version ===" << std::endl;
     if (argc != 4)
     {
-        std::cout << "Usage: " << args[0] << " <array-size> <read-iter-count>" << std::endl;
+        std::cout << "Usage: " << args[0] << " <thread-count> <array-size> <read-iter-count>" << std::endl;
         return 0;
     }
     const int threadCount = atoi(args[1]);
