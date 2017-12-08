@@ -1,18 +1,19 @@
-struct Data
+private struct Data
 {
-    ulong       id;
+    ulong id;
     // string      metadata;
     ubyte[3000] feature;
 }
 
-enum ThreadCount = 8;
+private enum ThreadCount = 8;
 
 import std.stdio;
 import std.container.array : Array;
-__gshared Array!Data gallery;
-__gshared ReadIterCount = 0;
 
-void read(int tid)
+__gshared Array!Data gallery; /// Global gallery store
+__gshared ReadIterCount = 0; /// Number of times the gallery must be read
+
+private void read(int tid)
 {
     ulong totalIterations;
     foreach (_; 0 .. ReadIterCount)
@@ -41,7 +42,7 @@ void main(string[] args)
         writefln("Usage: %s <array-size> <read-iter-count>", args[0]);
         return;
     }
-    import std.datetime.stopwatch, std.conv: to;
+    import std.datetime.stopwatch, std.conv : to;
 
     ReadIterCount = args[2].to!int;
 
@@ -54,16 +55,19 @@ void main(string[] args)
         gallery.insertBack(data);
     }
 
-    stderr.writeln("Took ", sw.peek, " to load ", gallery.length, " items. Gonna search in parallel...");
+    stderr.writeln("Took ", sw.peek, " to load ", gallery.length,
+            " items. Gonna search in parallel...");
     sw.start;
 
     foreach (i; 0 .. ThreadCount)
     {
-        import std.concurrency: spawn;
+        import std.concurrency : spawn;
+
         spawn(&read, i);
     }
     sw.reset;
-    import core.thread: thread_joinAll;
+    import core.thread : thread_joinAll;
+
     thread_joinAll();
     stderr.writeln("Took ", sw.peek, " to search.");
 }
