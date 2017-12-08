@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <cstring>
 #include <vector>
 #include <thread>
 #include <iostream>
@@ -24,14 +25,16 @@ void read(int tid)
     uint64_t totalIterations = 0;
     for (int i = 0; i < ReadIterCount; i++)
     {
+        char buff[3000];
         uint64_t loopCount = 0;
         for (auto& item : gallery)
         {
             if (loopCount != item.id)
                 std::cerr << "loopCount: " << loopCount << " item.id: " << item.id << std::endl;
             loopCount++;
-            // let's make sure we read something so that the compiler optimization is avoided
-            std::cout << item.id;
+            memcpy(buff, item.feature, sizeof(item.feature));
+            // damn the IO
+            //std::cout << item.id;
         }
         totalIterations += loopCount;
     }

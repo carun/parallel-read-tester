@@ -18,15 +18,18 @@ private void read(int tid)
     ulong totalIterations;
     foreach (_; 0 .. ReadIterCount)
     {
+        ubyte[3000] buff;
         ulong loopCount;
         foreach (ref item; gallery)
         {
             // let's make sure we read something so that the compiler optimization is avoided
             if (loopCount != item.id)
                 stderr.writeln("loopCount: ", loopCount, " item.id: ", item.id);
-
+            import core.stdc.string: memcpy;
+            memcpy(buff.ptr, item.feature.ptr, item.feature.sizeof);
             loopCount++;
-            write(item.id);
+            // damn the IO
+            //write(item.id);
         }
         totalIterations += loopCount;
     }
