@@ -21,7 +21,7 @@ private void read(int tid)
         foreach (i; 0 .. gallery.length)
         {
             // let's make sure we read something so that the compiler optimization is avoided
-            const Data* item = &gallery[i];
+            auto item = &gallery[i];
             if (loopCount != item.id)
                 stderr.writeln("loopCount: ", loopCount, " item.id: ", item.id);
             import core.stdc.string: memcpy;
