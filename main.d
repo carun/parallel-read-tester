@@ -43,7 +43,7 @@ void main(string[] args)
         writefln("Usage: %s <thread-count> <array-size> <read-iter-count>", args[0]);
         return;
     }
-    import std.datetime.stopwatch, std.conv : to;
+    import std.datetime, std.conv : to;
 
     int threadCount = args[1].to!int;
     ReadIterCount = args[3].to!int;
@@ -57,7 +57,7 @@ void main(string[] args)
         gallery.insertBack(data);
     }
 
-    stderr.writeln("Took ", sw.peek, " to load ", gallery.length,
+    stderr.writeln("Took ", sw.peek.msecs, " msecs to load ", gallery.length,
             " items. Gonna search in parallel...");
     sw.start;
 
@@ -71,5 +71,5 @@ void main(string[] args)
     import core.thread : thread_joinAll;
 
     thread_joinAll();
-    stderr.writeln("Took ", sw.peek, " to search.");
+    stderr.writeln("Took ", sw.peek.msecs, " to search.");
 }
