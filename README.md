@@ -13,7 +13,7 @@ Iterations: 200
 ```
 
 * Processor: (Skylake) Intel(R) Core(TM) i7-6770HQ CPU @ 2.60GHz
-* OS: Ubuntu 17.04 64 bit
+* OS: Ubuntu 17.10 64 bit
 
 |Compiler       |g++ 7.2.0      |LDC 1.6.0          |DMD 2.077.1    |gdc 7.2.0  |
 |---------------|---------------|-------------------|---------------|-----------|
