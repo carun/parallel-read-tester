@@ -12,8 +12,8 @@ Gallery size: 2000000
 Iterations: 200
 ```
 
-Processor: (Skylake) Intel(R) Core(TM) i7-6770HQ CPU @ 2.60GHz
-OS: Ubuntu 17.04 64 bit
+* Processor: (Skylake) Intel(R) Core(TM) i7-6770HQ CPU @ 2.60GHz
+* OS: Ubuntu 17.04 64 bit
 
 |Compiler       |g++ 7.2.0      |LDC 1.6.0          |DMD 2.077.1    |gdc 7.2.0  |
 |---------------|---------------|-------------------|---------------|-----------|
@@ -27,8 +27,8 @@ Gallery size: 2000000
 Iterations: 200
 ```
 
-Processor: (Haswell) Intel(R) Xeon(R) CPU E5-2630 v3 @ 2.40GHz
-OS: RHEL 7.3 64 bit
+* Processor: (Haswell) Intel(R) Xeon(R) CPU E5-2630 v3 @ 2.40GHz
+* OS: RHEL 7.3 64 bit
 
 |Compiler       |g++ 4.8.5      |LDC 1.6.0          |DMD 2.077.1    |
 |---------------|---------------|-------------------|---------------|
