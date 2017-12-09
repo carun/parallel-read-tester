@@ -18,9 +18,10 @@ private void read(int tid)
     {
         ubyte[3000] buff;
         ulong loopCount;
-        foreach (ref item; gallery)
+        foreach (i; 0 .. gallery.length)
         {
             // let's make sure we read something so that the compiler optimization is avoided
+            const Data* item = &gallery[i];
             if (loopCount != item.id)
                 stderr.writeln("loopCount: ", loopCount, " item.id: ", item.id);
             import core.stdc.string: memcpy;
@@ -68,6 +69,7 @@ void main(string[] args)
         spawn(&read, i);
     }
     sw.reset;
+
     import core.thread : thread_joinAll;
 
     thread_joinAll();
